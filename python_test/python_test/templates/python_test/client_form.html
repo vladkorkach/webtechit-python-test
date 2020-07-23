@@ -1,0 +1,6 @@
+<h1>Client Edit</h1>
+<a href="{% url "client_list" %}">Home</a>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>

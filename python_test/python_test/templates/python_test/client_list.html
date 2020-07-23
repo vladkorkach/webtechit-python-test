@@ -1,0 +1,47 @@
+<h1>Clients</h1>
+<form id="searchform" action="{% url 'client_search_list_view' %}" method="get" accept-charset="utf-8">
+      <button class="searchbutton" type="submit">
+        Search
+      </button>
+      <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+</form>
+
+<table border="1">
+    <thead>
+        <tr>
+        <th>Id</th>
+        <th><a href="{% url 'client_order_list_view' %}?q=name">Name</a></th>
+        <th>Street</th>
+        <th><a href="{% url 'client_order_list_view' %}?q=suburb">Suburb</a></th>
+        <th>Postcode</th>
+        <th>State</th>
+        <th>Contact_name</th>
+        <th><a href="{% url 'client_order_list_view' %}?q=email">Email</a></th>
+        <th><a href="{% url 'client_order_list_view' %}?q=phone">Phone</a></th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for client in object_list %}
+        <tr>
+        <td>{{ client.pk }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.street }}</td>
+        <td>{{ client.suburb }}</td>
+        <td>{{ client.postcode }}</td>
+        <td>{{ client.state }}</td>
+        <td>{{ client.contact_name }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td><a href="{% url "client_view" client.id %}">view</a></td>
+        <td><a href="{% url "client_edit" client.id %}">edit</a></td>
+        <td><a href="{% url "client_delete" client.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url "client_new" %}">New</a>
